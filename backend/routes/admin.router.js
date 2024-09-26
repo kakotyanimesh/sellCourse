@@ -8,9 +8,10 @@ const { adminModel } = require('../model/admin.model')
 const { adminAuth } = require('../middlewares/adminauth')
 const { courseModel } = require('../model/course.model')
 const { userAuth } = require('../middlewares/userauth')
+const { loginLimit, adminActionLimit } = require('../middlewares/rateLimiter')
 
 
-adminRouter.post('/signup', async (req, res) => {
+adminRouter.post('/signup', loginLimit, async (req, res) => {
     try {
         const object = z.object({
             email: z.string().email({ message : 'provide valid email'}),
@@ -51,7 +52,7 @@ adminRouter.post('/signup', async (req, res) => {
    
 })
 
-adminRouter.post('/signin', async (req, res) => {
+adminRouter.post('/signin', loginLimit, async (req, res) => {
     try {
         const object = z.object({
             email: z.string().email({ message : 'provide valid email'}),
@@ -101,13 +102,13 @@ adminRouter.post('/signin', async (req, res) => {
 })
 
 
-adminRouter.post('/createCourse', adminAuth, async (req, res) => {
+adminRouter.post('/createCourse', adminActionLimit, adminAuth, async (req, res) => {
     try {
         const adminId = req.userId // in jwt-token the user's id(information) is stored in userId ( typo)
         // console.log(adminId);
         
         const object = z.object({
-            title : z.string().min(6, {message : 'min 10 character is required'}).max(15, {message : 'max 15 character is allowed'}),
+            title : z.string().min(6, {message : 'min 6 character is required'}).max(15, {message : 'max 15 character is allowed'}),
             description : z.string().min(10, {message : 'min 10 '}).max(50,  {message : 'max 10 chracter is allowed'}),
             price : z.number()
         })
@@ -142,8 +143,65 @@ adminRouter.post('/createCourse', adminAuth, async (req, res) => {
 })
 
 
-adminRouter.put('/updateCourse', async(req, res) => {
+adminRouter.put('/updateCourse', adminActionLimit, adminAuth,async(req, res) => {
+    try {
+        const adminId = req.userId
+        const updateObject = z.object({
+            title : z.string().min(5, {message : 'min 6 character is allowed'}).max(15, {message : 'max 15 character is allowed'}),
+            description : z.string().min(10, {message : 'min 10'}).max(50, {message : 'max 50 character is allowed'}),
+            price : z.number(),
+            courseId : z.string()
+        })
     
+        const parsedObject = updateObject.safeParse(req.body)
+    
+        if(!parsedObject.success){
+            return res.status(403).json({
+                message : 'invalid crediantials',
+                error : parsedObject.error.errors
+            })
+        }
+    
+        const { title, description, price, courseId } = parsedObject.data
+    
+        await courseModel.updateOne({
+            _id : courseId,
+            creatorId : adminId
+        },{
+          title, 
+          description, 
+          price  
+        })
+    
+        res.status(201).json({
+            message : 'course updated'
+        })
+    } catch (error) {
+        res.status(403).json({
+            message :  `something went wrong : ${error.message}`
+        })   
+    }
+})
+
+
+adminRouter.get('/course/bulk',adminActionLimit, adminAuth, async (req, res) => {
+    try {
+        const adminId = req.userId
+    
+        const courses = await courseModel.find({
+            creatorId : adminId
+        })
+    
+        res.status(200).json({
+            message : `courses fetched successfully`,
+            courses
+        })
+    } catch (error) {
+        res.status(403).json({
+            message : `something went wrong while fetching the courses : ${error.message}`
+        })
+    }
+
 })
 
 module.exports = {

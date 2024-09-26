@@ -8,9 +8,11 @@ const { userModel } = require('../model/user.model')
 const { userAuth } = require('../middlewares/userauth')
 const { adminAuth } = require('../middlewares/adminauth')
 const { courseModel } = require('../model/course.model')
+const { purchaseModel } = require('../model/purchase.model')
+const { generalRate, loginLimit, purchaseRate, browseRate} = require('../middlewares/rateLimiter')
 
 
-userRouter.post('/signup', async (req, res) => {
+userRouter.post('/signup', loginLimit, async (req, res) => {
     try {
         const signupObject = z.object({
             email: z.string().email({ message : 'provide valid email'}),
@@ -50,7 +52,7 @@ userRouter.post('/signup', async (req, res) => {
 })
 
 
-userRouter.post('/signin', async (req, res) => {
+userRouter.post('/signin', loginLimit, async (req, res) => {
     try {
         const signinObject = z.object({
             email : z.string().email({message : 'provide a valid email'}),
@@ -87,7 +89,7 @@ userRouter.post('/signin', async (req, res) => {
 
         const token = jwt.sign({
             userId : user._id  // as im using userId as variable name so in my auth middleware i should use .userId as variable name
-        }, process.env.jwt_secret_user, {expiresIn : '24hr'})
+        }, process.env.jwt_secret_user, {expiresIn : '24h'})
 
 
 
@@ -102,45 +104,20 @@ userRouter.post('/signin', async (req, res) => {
     }
 })
 
-userRouter.post('/purchasesCourse', adminAuth, async (req, res) => {
+userRouter.get('/userCourse', browseRate, userAuth, async (req, res) => {
     try {
-        const adminId = req.userID
-        // console.log(adminId);
-        
-        const object = z.object({
-            title : z.string().min(6, {message : 'min 10 character is required'}).max(15, {message : 'max 15 character is allowed'}),
-            description : z.string().min(10, {message : 'min 10 '}).max(50,  {message : 'max 10 chracter is allowed'}),
-            price : z.number()
-        })
+        const userId = req.userId
     
-        const parsedObject = object.safeParse(req.body)
-    
-        if(!parsedObject.success){
-            return res.status(403).json({
-                message : 'invalid crediantials', 
-                error : parsedObject.error.errors
-            })
-        }
-    
-        const { title, description, price } = parsedObject.data
-    
-        const course = await courseModel.create({
-            title,
-            description,
-            price,
-            creatorId: adminId
-        })
+        const courses = await purchaseModel.find({userId})
     
         res.status(200).json({
-            message : `course created by ${adminId} `,
-            course
+            courses
         })
     } catch (error) {
         res.status(403).json({
-            message : `something went wrong while creating course : ${error.message}`
+            message : `something went wrong : ${error.message}`
         })
     }
-    
 })
 
 
