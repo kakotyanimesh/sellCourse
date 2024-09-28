@@ -34,15 +34,16 @@ adminRouter.post('/signup', loginLimit, async (req, res) => {
     
         const hasedPassword = await bcrypt.hash(password, 10)
     
-        await adminModel.create({
+        const admin = await adminModel.create({
             email,
             username,
             password : hasedPassword,
             fullName
         })
+
     
         res.status(201).json({
-            message : 'successfully signed up'
+            message : 'successfully signed up',
         })
     } catch (error) {
         res.status(403).json({

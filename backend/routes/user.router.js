@@ -34,7 +34,7 @@ userRouter.post('/signup', loginLimit, async (req, res) => {
 
         const hasedPassword = await bcrypt.hash(password, 10)
     
-        await userModel.create({
+        const user = await userModel.create({
             email,
             username,
             password : hasedPassword,
@@ -42,7 +42,7 @@ userRouter.post('/signup', loginLimit, async (req, res) => {
         })
     
         res.status(201).json({
-            message : 'user created successfully '
+            message : 'user created successfully',
         })
     } catch (error) {
         res.status(500).json({

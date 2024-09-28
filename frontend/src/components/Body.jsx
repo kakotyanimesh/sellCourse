@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Form from './Form'
+import Pre from './pre'
+
 
 
 
@@ -23,8 +25,8 @@ const Body = () => {
                 </div>
                 <div className='pt-10 sm:text-2xl text-xm flex space-x-5 text-white '>
                 {/* we passed the prop of educator or student the form func and will passed to Form component also */}
-                    <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 sm:p-2 p-1 rounded-lg' onClick={() => showForm('Educator')}>Signup as Educator</button>  
-                    <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 sm:p-2 p-1 rounded-lg' onClick={() => showForm('Student')}>Signup as Student</button>
+                    <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 sm:p-2 p-1 rounded-lg' onClick={() => showForm('admin')}>Signup as Educator</button>  
+                    <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 sm:p-2 p-1 rounded-lg' onClick={() => showForm('user')}>Signup as Student</button>
                 </div>
             </div>
         ) 
@@ -32,7 +34,7 @@ const Body = () => {
         (
             <div className='flex justify-center items-center mt-20'>
                 {/* we are the sending userType props to Form element */}
-                <Form userType={userType} />
+                <Pre userType={userType} />
             </div>
         ) 
     }

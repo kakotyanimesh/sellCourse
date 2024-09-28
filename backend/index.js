@@ -1,11 +1,20 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cors = require('cors')
 require('dotenv').config()
 const { adminRouter } = require('./routes/admin.router')
 const { userRouter } = require('./routes/user.router')
 const { courseRouter } = require('./routes/course.router')
 const app = express()
 
+const corsOptions = {
+   origin: ['http://localhost:5173'],
+   methods: ['GET', 'POST', 'DELETE'],
+   allowedHeaders: ['Content-Type', 'Authorization'],
+   credentials: true,
+}
+
+app.use(cors(corsOptions))
 app.use(express.json()) // dont forget this sir 
 
 const port = process.env.PORT || 3002
