@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@font-face {
+  font-family: Autumn;
+  src: url('../src/assets/fonts/Autumn.otf');
+}
