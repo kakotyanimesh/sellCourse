@@ -27,10 +27,10 @@ app.use('/api/v1/course', courseRouter )
 const main = async () => {
    try {
 
-      if(!process.env.mongoUrl){
-         console.log(`mongoDb url is not defined in the env file`);
-         process.exit(1) // // Exit the application with a non-zero status =-> stop the server 
-      }
+      // if(!process.env.mongoUrl){
+      //    console.log(`mongoDb url is not defined in the env file`);
+      //    process.exit(1) // // Exit the application with a non-zero status =-> stop the server 
+      // }
    
       await mongoose.connect(process.env.MONGO_URL)
       app.listen(port, () => console.log(`the app is running at http://localhost:${port}`))
