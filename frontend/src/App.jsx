@@ -9,7 +9,7 @@ import './App.css'
 
 function App() {
 
-  
+  axios.defaults.baseURL = 'http://localhost:3002'
   return (
     <div className='font-Autumn bg-[#F4F4F4] min-h-screen text-[#044501]'>
       <Header/>

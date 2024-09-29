@@ -39,7 +39,7 @@ const Signin = ( { userType }) => {
             </label>
             <input 
                 type="text" 
-                className='sm:w-[200px] my-2'
+                className='sm:w-[200px] my-2 px-2'
                 value={email}
                 onChange={e => setEmail(e.target.value)}
             />
@@ -52,7 +52,7 @@ const Signin = ( { userType }) => {
             </label>
             <input 
                 type="text"
-                className='sm:w-[200px] my-2'
+                className='sm:w-[200px] my-2 px-2'
                 value={password}
                 onChange={e => setPassword(e.target.value)}
             />

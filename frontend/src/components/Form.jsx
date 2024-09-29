@@ -50,7 +50,7 @@ const Form = ({ userType }) => {
                             Email
                         </label>
                         <input 
-                            className='sm:w-[200px] my-2'
+                            className='sm:w-[200px] my-2 px-2'
                             type="text"
                             value={email}
                             onChange={e => setemail(e.target.value)}
@@ -62,7 +62,7 @@ const Form = ({ userType }) => {
                             Password
                         </label>
                         <input 
-                            className='sm:w-[200px] my-2'
+                            className='sm:w-[200px] my-2 px-2'
                             type="text"
                             value={password}
                             onChange={e => setpassword(e.target.value)}
@@ -74,7 +74,7 @@ const Form = ({ userType }) => {
                             Username
                         </label>
                         <input 
-                            className='sm:w-[200px] my-2'
+                            className='sm:w-[200px] my-2 px-2'
                             type="text"
                             value={username}
                             onChange={e => setUsername(e.target.value)}
@@ -86,7 +86,7 @@ const Form = ({ userType }) => {
                             FullName
                         </label>
                         <input 
-                            className='sm:w-[200px] my-2'
+                            className='sm:w-[200px] my-2 px-2'
                             type="text"
                             value={fullName}
                             onChange={e => setFullName(e.target.value)}
