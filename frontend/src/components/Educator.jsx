@@ -64,6 +64,11 @@ const Educator = () => {
       getCourse()
     }, [])
     
+    const logOut = (e) => {
+        // e.preventDefault()
+        localStorage.removeItem('token')
+        location.reload();
+    }
 
   return (
     // we are gonna have three things here : => Create Course button => Display the courses created by the educator and Edit button in every course 
@@ -73,7 +78,13 @@ const Educator = () => {
         </div>
         <div className='mt-2 text-center text-2xl'>
             {
-                !addCourse ? <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 sm:p-2 p-1 rounded-lg text-white' onClick={addCourseEd}>Add Course</button> 
+                !addCourse ? (
+                    <div className='flex gap-20 justify-center'>
+                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 sm:p-2 p-1 rounded-lg text-white' onClick={addCourseEd}>Add Course</button>
+                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 sm:p-2 p-1 rounded-lg text-white' onClick={logOut}>LogOut</button>
+                    </div>
+                    
+                ) 
                 :
                 <form onSubmit={courseToDb}>
                 <label 

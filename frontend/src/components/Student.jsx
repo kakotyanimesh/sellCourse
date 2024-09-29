@@ -75,12 +75,18 @@ const Student = ({ userType }) => {
     e.preventDefault()
     alert('Working on It.....')
   }
+
+  const logOut = () => {
+    location.reload()
+    localStorage.removeItem('token')
+  }
   
   return (
     <div className=''>
         <div className=' text-center sm:gap-40 gap-5 '>
           <h1 className='text-4xl'>Welcome Student </h1>
           <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={courseBuy} >BUY Course </button>
+          <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={logOut} >LogOut </button>
         </div>
         {
           !buyCourses ? 
