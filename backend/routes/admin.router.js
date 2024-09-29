@@ -109,7 +109,7 @@ adminRouter.post('/createCourse', adminActionLimit, adminAuth, async (req, res) 
         // console.log(adminId);
         
         const object = z.object({
-            title : z.string().min(6, {message : 'min 6 character is required'}).max(15, {message : 'max 15 character is allowed'}),
+            title : z.string().min(6, {message : 'min 6 character is required'}).max(25, {message : 'max 15 character is allowed'}),
             description : z.string().min(10, {message : 'min 10 '}).max(50,  {message : 'max 10 chracter is allowed'}),
             price : z.number()
         })

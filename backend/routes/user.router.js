@@ -104,12 +104,12 @@ userRouter.post('/signin', loginLimit, async (req, res) => {
     }
 })
 
-userRouter.get('/userCourse', browseRate, userAuth, async (req, res) => {
+userRouter.get('/userCourse', userAuth, async (req, res) => {
     try {
         const userId = req.userId
     
-        const courses = await purchaseModel.find({userId})
-    
+        const courses = await purchaseModel.find({userId}).populate('courseId', 'title description price')
+        // const courseDetails = await courseModel.find({courses.data.})
         res.status(200).json({
             courses
         })
