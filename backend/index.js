@@ -8,7 +8,7 @@ const { courseRouter } = require('./routes/course.router')
 const app = express()
 
 const corsOptions = {
-   origin: ['http://localhost:5173'],
+   origin: ['http://localhost:5173', 'https://sell-course-orpin.vercel.app'],
    methods: ['GET', 'POST', 'DELETE'],
    allowedHeaders: ['Content-Type', 'Authorization'],
    credentials: true,
@@ -32,7 +32,7 @@ const main = async () => {
          process.exit(1) // // Exit the application with a non-zero status =-> stop the server 
       }
    
-      await mongoose.connect(process.env.mongoUrl)
+      await mongoose.connect(process.env.MONGO_URL)
       app.listen(port, () => console.log(`the app is running at http://localhost:${port}`))
    } catch (error) {
       console.log(`something went wrong unable to conncet to mongoDb , error : ${error.message}`);

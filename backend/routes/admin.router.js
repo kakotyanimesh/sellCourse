@@ -185,7 +185,7 @@ adminRouter.put('/updateCourse', adminActionLimit, adminAuth,async(req, res) => 
 })
 
 
-adminRouter.get('/course/bulk', adminAuth, async (req, res) => {
+adminRouter.get('/course/bulk', adminActionLimit, adminAuth, async (req, res) => {
     try {
         const adminId = req.userId
     

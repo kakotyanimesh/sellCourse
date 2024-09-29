@@ -32,7 +32,7 @@ const Body = () => {
         ) 
         : 
         (
-            <div className='flex justify-center items-center mt-20'>
+            <div className='flex justify-center items-center sm:mt-20'>
                 {/* we are the sending userType props to Form element */}
                 <Pre userType={userType} />
             </div>
