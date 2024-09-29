@@ -3,7 +3,7 @@ const { ratelimiter, default: rateLimit } = require('express-rate-limit')
 
 const generalRate = rateLimit({
     windowMs : 10 * 60 * 1000, // 10 mintue window
-    max : 100, // 100 limit per 10 minutes
+    max : 200, // 100 limit per 10 minutes
     standardHeaders : true,
     legacyHeaders : false
 })
@@ -11,7 +11,7 @@ const generalRate = rateLimit({
 
 const loginLimit = rateLimit({
     windowMs : 1 * 60 * 1000 , // 1 minute window
-    max : 5, // 5 req
+    max : 10, // 5 req
     standardHeaders : true,
     legacyHeaders : false
 })
@@ -19,7 +19,7 @@ const loginLimit = rateLimit({
 
 const purchaseRate = rateLimit({
     windowMs : 1 * 60 * 1000,
-    max : 5,
+    max : 50,
     standardHeaders : true,
     legacyHeaders : false
 })
@@ -34,7 +34,7 @@ const adminActionLimit = rateLimit({
 
 const browseRate = rateLimit({
     windowMs : 1 * 60 * 1000,
-    max : 20,
+    max : 40,
     standardHeaders : true,
     legacyHeaders : false
 })

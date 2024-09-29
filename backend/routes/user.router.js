@@ -52,7 +52,7 @@ userRouter.post('/signup', loginLimit, async (req, res) => {
 })
 
 
-userRouter.post('/signin', loginLimit, async (req, res) => {
+userRouter.post('/signin', async (req, res) => {
     try {
         const signinObject = z.object({
             email : z.string().email({message : 'provide a valid email'}),

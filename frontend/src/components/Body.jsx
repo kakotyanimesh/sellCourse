@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Form from './Form'
-import Pre from './pre'
+import Pre from './Pre'
 
 
 
