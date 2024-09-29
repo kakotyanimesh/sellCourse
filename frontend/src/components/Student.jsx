@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Student = ({ userType }) => {
-  axios.defaults.baseURL = `http://localhost:3002/api/v1/user`
+  axios.defaults.baseURL = `https://sellcourse.onrender.com/api/v1/user`
   const [buyCourses, setBuyCourses] = useState(false)
   const [courses, setCourses] = useState([])
   const [previewCourse, setpreviewCourse] = useState([])
@@ -11,7 +11,7 @@ const Student = ({ userType }) => {
     e.preventDefault()
     try {
 
-      const response = await axios.get('http://localhost:3002/api/v1/course/preview')
+      const response = await axios.get('https://sellcourse.onrender.com/api/v1/course/preview')
       setpreviewCourse(response.data.courses)
       setBuyCourses(true)
       // getCourses()
@@ -55,7 +55,7 @@ const Student = ({ userType }) => {
     try {
       const token = localStorage.getItem('token')
 
-      await axios.post('http://localhost:3002/api/v1/course/buyCourse',
+      await axios.post('https://sellcourse.onrender.com/api/v1/course/buyCourse',
         { courseId },
         {
           headers : {

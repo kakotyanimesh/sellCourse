@@ -5,7 +5,7 @@ import axios from 'axios'
 import Signin from './Signin'
 
 const Form = ({ userType }) => {
-    axios.defaults.baseURL = `http://localhost:3002/api/v1/${userType}`
+    axios.defaults.baseURL = `https://sellcourse.onrender.com/api/v1/${userType}`
     const [signup, setsignup] = useState(false)
     const [username, setUsername] = useState('')
     const [email, setemail] = useState('')

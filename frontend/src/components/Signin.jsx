@@ -5,7 +5,7 @@ import Educator from './Educator'
 
 
 const Signin = ( { userType }) => {
-    axios.defaults.baseURL = `http://localhost:3002/api/v1/${userType}`
+    axios.defaults.baseURL = `https://sellcourse.onrender.com/api/v1/${userType}`
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [logged, setLogged] = useState(false)

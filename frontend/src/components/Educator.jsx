@@ -8,7 +8,7 @@ const Educator = () => {
     const [price, setprice] = useState('')
     const [courses, setCourses] = useState([])
 
-    axios.defaults.baseURL = `http://localhost:3002/api/v1/admin`
+    axios.defaults.baseURL = `https://sellcourse.onrender.com/api/v1/admin`
     // const [first, setfirst] = useState(second)
 
     const addCourseEd = () => {
