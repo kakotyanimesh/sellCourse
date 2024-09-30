@@ -87,6 +87,8 @@ const Student = ({ userType }) => {
           <h1 className='text-4xl'>Welcome Student </h1>
           <button className='bg-[#13610d] mt-8 hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={courseBuy} >BUY Course </button>
           <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={logOut} >LogOut </button>
+          <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={dashBoard}>DashBoard </button>
+
         </div>
         {
           !buyCourses ? 
@@ -99,8 +101,8 @@ const Student = ({ userType }) => {
                     <h1>You have bought {courses.length} courses</h1>
                     <ul className='grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-2text-2xl'>
                       {courses.map(course => (
-                        <li key={course._id} className='border border-green-600 p-2 rounded-xl'>
-                          <img src="https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.8201249093606604.png" className='w-64 h-40' alt="" srcset="" />
+                        <li key={course._id} className='border border-green-600 p-1 rounded-xl'>
+                          <img src="https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.8201249093606604.png" className='w-full p-3 h-44 rounded-2xl' alt="" srcset="" />
                           <h1>Title : {course.courseId.title}</h1>
                           <h1>Description : {course.courseId.description}</h1>
                           <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={view}>View </button>
@@ -119,7 +121,7 @@ const Student = ({ userType }) => {
           ) : 
           (
             <div>
-              <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={dashBoard}>DashBoard </button>
+              {/* <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={dashBoard}>DashBoard </button> */}
               <ul className='grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-1 text-2xl'>
                 {previewCourse.map(course => (
                   <li key={course._id} className='border border-green-600 p-1 text-center rounded-xl'>
