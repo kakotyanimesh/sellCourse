@@ -111,7 +111,7 @@ const Student = ({ userType }) => {
                 ) :
                 (
                   <div>
-                    <h1>You have 0 courses ! Buy Something </h1>
+                    <h1>You have 0 😭😭 courses ! Please 🙏 🙏Buy Something </h1>
                   </div>
                 )
           }
@@ -122,8 +122,8 @@ const Student = ({ userType }) => {
               <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg ml-5 text-white' onClick={dashBoard}>DashBoard </button>
               <ul className='grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-1 text-2xl'>
                 {previewCourse.map(course => (
-                  <li key={course._id} className='border border-green-600 p-2 rounded-xl'>
-                    <img src="https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.8201249093606604.png" className='w-64 h-40 rounded-xl' alt="" srcset="" />
+                  <li key={course._id} className='border border-green-600 p-1 text-center rounded-xl'>
+                    <img src="https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.8201249093606604.png" className='w-full p-3 h-44 rounded-2xl' alt="" srcset="" />
                     <h1>TITLE : {course.title}</h1>
                     <h1>DESCRIPTION : {course.description}</h1>
                     <h1>PRICE : ₹{course.price}</h1>
