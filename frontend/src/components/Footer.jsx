@@ -4,10 +4,11 @@ import { faGithub, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-
 
 const Footer = () => {
   return (
-    <div className='flex justify-between items-center sm:mt-56 mt-28 px-10 sm:px-56'>
+    <div className='flex justify-between items-center sm:mt-56 mt-48 px-10 sm:px-56'>
         <div>
             <h1 className='sm:text-3xl text-xl font-bold'>Edu-Nexus</h1>
-            <p className="pt-1 sm:text-xl text-xs">Empowering educators and students through learning.</p>
+            <p className="pt-1 sm:text-xl text-xs">`{"pathetic".toUpperCase()}` UI(😭😭).</p> 
+            {/* i know the upper case thing but i like it over coding lol  */}
 
         </div>
         <div>

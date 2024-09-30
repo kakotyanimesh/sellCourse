@@ -36,7 +36,7 @@ const Form = ({ userType }) => {
         // alert(`form submitted by ${userType}`)
     }
   return (
-    <div>
+    <div className='sm:mt-0 mt-16'>
         {
             !signup ? 
             (
@@ -91,7 +91,7 @@ const Form = ({ userType }) => {
                             value={fullName}
                             onChange={e => setFullName(e.target.value)}
                         /> <br />
-                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg mt-3 text-white' type='submit'>submit</button> 
+                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 sm:mx-36 mx-20 rounded-lg text-white' type='submit'>submit</button> 
                         {/* <button className='sm:ml-5 bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg mt-3 text-white' type='submit'>Login</button>  */}
                         {/* // clicking this button and i should render to a new page based on my preference educator or student  */}
                     </form>

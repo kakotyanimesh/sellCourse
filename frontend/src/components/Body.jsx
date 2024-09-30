@@ -15,12 +15,12 @@ const Body = () => {
         // alert('asdasd')
     }
   return (
-    <>
+    <div className=''>
     {
         !Signup ? 
         (
             <div className='flex flex-col justify-center items-center sm:mt-36 mt-28'>
-                <div className='sm:text-5xl text-2xl px-5 text-center font-bold text-[#044501]'>
+                <div className='sm:text-5xl text-2xl px-5 text-center font-bold text-[#0E1219]'>
                     <h1>Udemy’s Cool, but We’ve Got the Good Stuff – Welcome to EduNexus!</h1>
                 </div>
                 <div className='pt-10 sm:text-2xl text-xm flex space-x-5 text-white '>
@@ -38,7 +38,7 @@ const Body = () => {
             </div>
         ) 
     }
-    </>
+    </div>
   )
 }
 

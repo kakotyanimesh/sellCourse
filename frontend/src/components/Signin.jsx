@@ -26,33 +26,33 @@ const Signin = ( { userType }) => {
         
     }
   return (
-    <div>
+    <div className='sm:mt-0 mt-24'>
         {
             !logged ? 
             (
                 <form onSubmit={logIn} className='text-center text-2xl'>
             <label 
                 htmlFor="Email"
-                className='sm:w-[140px] w-[70px] inline-block'
+                className='sm:w-[180px] w-[70px] inline-block'
             >
                 Email
             </label>
             <input 
                 type="text" 
-                className='sm:w-[200px] my-2 px-2'
+                className='sm:w-[200px] text-[#008080] rounded-xl my-3 px-2'
                 value={email}
                 onChange={e => setEmail(e.target.value)}
             />
             <br />
             <label 
                 htmlFor="password"
-                className='sm:w-[140px] w-[70px] inline-block'
+                className='sm:w-[180px] w-[70px] inline-block'
             >
             Password
             </label>
             <input 
                 type="text"
-                className='sm:w-[200px] my-2 px-2'
+                className='sm:w-[200px] text-[#008080] rounded-xl my-3 px-2'
                 value={password}
                 onChange={e => setPassword(e.target.value)}
             />

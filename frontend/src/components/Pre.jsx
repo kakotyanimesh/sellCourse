@@ -23,9 +23,12 @@ const Pre = ({  userType }) => {
         {
             !idk ? 
             (
-                <div className='text-3xl mb-20 mt-10'>
+                <div className='sm:mt-28 mt-48'>
+                <p className="pt-1 sm:text-3xl text-xl font-bold sm:pb-5">Empowering educators and students through learning.</p>
+                <div className='sm:text-3xl text-xl flex justify-between px-20'>
                     <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg mt-3 text-white' onClick={changeForm}>JOIN</button> 
                     <button className='sm:ml-5 bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg mt-3 text-white' onClick={chageLogin}>LogIn</button>     
+                </div>
                 </div>
             ) :
             (
