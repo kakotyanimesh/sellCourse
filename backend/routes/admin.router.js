@@ -9,6 +9,7 @@ const { adminAuth } = require('../middlewares/adminauth')
 const { courseModel } = require('../model/course.model')
 const { userAuth } = require('../middlewares/userauth')
 const { loginLimit, adminActionLimit } = require('../middlewares/rateLimiter')
+const { default: mongoose } = require('mongoose')
 
 
 adminRouter.post('/signup', loginLimit, async (req, res) => {
@@ -204,6 +205,29 @@ adminRouter.get('/course/bulk', adminActionLimit, adminAuth, async (req, res) =>
     }
 
 })
+
+adminRouter.delete('/deleteCourse',async (req, res) => {
+    try {
+        const {courseId} = req.body
+
+        const result = await courseModel.deleteOne({
+            _id: courseId
+        })
+
+        // if(result.deletedCount === 0 ){
+        //     return res.status(404).json({
+        //         message : `course with ${courseId} not found !!`
+        //     })
+        // }
+        res.status(200).json({
+            message : ` course with ${courseId} deleted successfully `
+        })
+    } catch (error) {
+        res.status(403).json({
+            message : `unable to delete error : ${error.message}`
+        })
+    }
+} )
 
 module.exports = {
     adminRouter
