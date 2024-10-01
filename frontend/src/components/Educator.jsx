@@ -7,17 +7,21 @@ const Educator = () => {
     const [description, setdescription] = useState('')
     const [price, setprice] = useState('')
     const [courses, setCourses] = useState([])
+    const [edit, setEdit] = useState(false)
+    const [courseId, setCourseId] = useState('')
 
     axios.defaults.baseURL = `https://sellcourse.onrender.com/api/v1/admin`
+    // axios.defaults.baseURL = `http://localhost:3002/api/v1/admin`
     // const [first, setfirst] = useState(second)
 
     const addCourseEd = () => {
         setaddCourse(true)
+        setEdit(false)
     }
 
 
     const courseToDb = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         try {
             const token = localStorage.getItem('token')
             // console.log(token);
@@ -70,6 +74,67 @@ const Educator = () => {
         location.reload();
     }
 
+    const editCourse = (course) => {
+        // e.preventDefault()
+        setEdit(true)
+        setaddCourse(true)
+        setCourseId(course._id)
+        console.log('asdadsads');
+        
+
+    }
+
+    const updateCourse = async () => {
+        // console.log("asdadsa");
+        try {
+            const token = localStorage.getItem('token')
+            await axios.put('/updateCourse', {
+                title,
+                description,
+                price : parseFloat(price),
+                courseId
+            },
+            {
+                headers : {
+                    Authorization : token
+                }
+            }
+        )
+            setaddCourse(false)
+            getCourse()
+            settitle('')
+            setdescription('')
+            setprice('')
+            alert('course updated successfully !! ')
+        } catch (error) {
+            console.log(`${error.message}`);
+            
+        }
+
+        
+    }
+
+
+    const deleteCourse = async (course) => {
+        const courseId = course._id
+        try {
+            const token = localStorage.getItem('token')
+            await axios.delete('/deleteCourse', {
+                headers : {
+                    Authorization : token
+                },
+                data : {
+                    courseId
+                }
+            })
+    
+            await getCourse()
+            alert('course deleted successfully !! ')
+        } catch (error) {
+            console.log(`unable to delete course ${error.message}`);
+            
+        }
+    }
   return (
     // we are gonna have three things here : => Create Course button => Display the courses created by the educator and Edit button in every course 
     <div>
@@ -86,7 +151,15 @@ const Educator = () => {
                     
                 ) 
                 :
-                <form onSubmit={courseToDb}>
+                
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    if(edit) {
+                        updateCourse()
+                    } else {
+                        courseToDb()
+                    }
+                }}>
                 <label 
                     htmlFor=""
                     className='sm:w-[140px] w-[70px] inline-block'
@@ -125,7 +198,9 @@ const Educator = () => {
                     onChange={e => setprice(e.target.value)}
         
                 /> <br />
-                <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg mt-3 text-white' type='submit'>submit</button> 
+                <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg mt-3 text-white' type='submit'>
+                    {edit ? 'upadate Course' : 'Add Course'}
+                </button> 
                 {/* // clicking this button and i should render to a new page based on my preference educator or student  */}
                 </form>
             }
@@ -141,11 +216,11 @@ const Educator = () => {
                                 <li key={course._id} className='border-2 border-green-800 p-2 rounded-xl'>
                                     <img src="https://appxcontent.kaxa.in/paid_course3/2024-07-07-0.8201249093606604.png" className='w-64 h-40' alt="" srcset="" />
                                     <h1>Title : {course.title}</h1>
-                                    <p>{course.description}</p>
+                                    <p>DESCRIPTION : {course.description}</p>
                                     <p>Price : {course.price}</p>
                                     <div className='px-5 flex justify-between'>
-                                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg text-white'>Edit</button> 
-                                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg text-white'>Delete</button> 
+                                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg text-white' onClick={() => editCourse(course)}>Edit</button> 
+                                        <button className='bg-[#13610d] hover:bg-[#92b984] duration-200 p-1.5 rounded-lg text-white' onClick={() => deleteCourse(course)}>Delete</button> 
                                     </div>
 
                                 </li>
