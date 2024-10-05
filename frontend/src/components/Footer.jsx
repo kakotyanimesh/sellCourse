@@ -20,7 +20,7 @@ const Footer = () => {
                     </a>   
                 </span>
                 <span>
-                    <a href="https://twitter.com/_animeshkakoty" target='_blanck'>
+                    <a href="https://x.com/_animeshkakoty/status/1840488003426242795" target='_blanck'>
                         <FontAwesomeIcon icon={faTwitter} sm:size='xl' />
                     </a>
                 </span>

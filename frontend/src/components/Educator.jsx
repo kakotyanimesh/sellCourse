@@ -160,41 +160,26 @@ const Educator = () => {
                         courseToDb()
                     }
                 }}>
-                <label 
-                    htmlFor=""
-                    className='sm:w-[140px] w-[70px] inline-block'
-                >
-                    Title 
-                </label>
                 <input 
-                    className='sm:w-[200px] my-2'
+                    className='sm:w-[200px] px-4 rounded-xl text-[#008080] my-2'
                     type="text"
                     value={title}
+                    placeholder='Title'
                     onChange={e => settitle(e.target.value)} 
                 /> <br />
-                <label 
-                    htmlFor=""
-                    className='sm:w-[140px] w-[70px] inline-block'
-                >
-                    Decription 
-                </label>
                 <input 
-                    className='sm:w-[200px] my-2'
+                    className='sm:w-[200px] px-4 rounded-xl text-[#008080] my-2'
                     type="text"
                     value={description}
+                    placeholder='Description'
                     onChange={e => setdescription(e.target.value)}
         
                 /> <br />
-                <label 
-                    htmlFor="password"
-                    className='sm:w-[140px] w-[70px] inline-block'
-                >
-                    Price
-                </label>
                 <input 
-                    className='sm:w-[200px] my-2'
+                    className='sm:w-[200px] my-2 px-4 rounded-xl text-[#008080]'
                     type="text"
                     value={price}
+                    placeholder='price'
                     onChange={e => setprice(e.target.value)}
         
                 /> <br />
