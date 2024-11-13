@@ -52,6 +52,4 @@ courseRouter.get('/preview',browseRate, async (req, res) => {
 })
 
 
-module.exports = {
-    courseRouter
-}
+export { courseRouter }

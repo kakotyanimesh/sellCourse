@@ -123,6 +123,4 @@ userRouter.get('/userCourse', userAuth, async (req, res) => {
 
 
 
-module.exports = {
-    userRouter
-}
+export { userRouter }

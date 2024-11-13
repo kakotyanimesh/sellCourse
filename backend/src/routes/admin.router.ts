@@ -229,6 +229,4 @@ adminRouter.delete('/deleteCourse',async (req, res) => {
     }
 } )
 
-module.exports = {
-    adminRouter
-}
+export { adminRouter }
