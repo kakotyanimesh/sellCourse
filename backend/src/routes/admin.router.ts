@@ -1,15 +1,13 @@
-const { Router } = require('express')
+import { Router } from "express"
 const adminRouter = Router()
-const z = require('zod')
-const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
-const { default: errorMap } = require('zod/locales/en.js')
-const { adminModel } = require('../model/admin.model')
-const { adminAuth } = require('../middlewares/adminauth')
-const { courseModel } = require('../model/course.model')
-const { userAuth } = require('../middlewares/userauth')
-const { loginLimit, adminActionLimit } = require('../middlewares/rateLimiter')
-const { default: mongoose } = require('mongoose')
+import {z} from 'zod'
+import * as jwt from 'jsonwebtoken'
+import * as bcrypt from 'bcrypt'
+import { adminModel } from "../model/admin.model"
+import { adminAuth } from "../middlewares/adminauth"
+import { courseModel } from "../model/course.model"
+import { loginLimit, adminActionLimit } from "../middlewares/rateLimiter"
+
 
 
 adminRouter.post('/signup', loginLimit, async (req, res) => {

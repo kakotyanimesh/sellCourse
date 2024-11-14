@@ -1,6 +1,4 @@
-const { ratelimiter, default: rateLimit } = require('express-rate-limit')
-
-
+import { rateLimit } from 'express-rate-limit'
 const generalRate = rateLimit({
     windowMs : 10 * 60 * 1000, // 10 mintue window
     max : 200, // 100 limit per 10 minutes
@@ -39,7 +37,7 @@ const browseRate = rateLimit({
     legacyHeaders : false
 })
 
-module.exports = {
+export {
     generalRate,
     loginLimit,
     purchaseRate,

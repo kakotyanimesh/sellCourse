@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-const { number, object } = require('zod')
+import mongoose from "mongoose"
 
 const { Schema, Types : {ObjectId } } = mongoose
 
@@ -25,6 +24,4 @@ const courseSchema = new Schema({
 
 const courseModel = mongoose.model('Course', courseSchema)
 
-module.exports = {
-    courseModel
-}
+export { courseModel}

@@ -1,9 +1,9 @@
-const { Router } = require("express")
+import { Router } from "express"
 const courseRouter = Router()
-const { userAuth } = require('../middlewares/userauth') 
-const { purchaseModel } = require('../model/purchase.model')
-const { courseModel } = require("../model/course.model")
-const { purchaseRate, browseRate } = require('../middlewares/rateLimiter')
+import { userAuth } from "../middlewares/userauth"
+import { purchaseModel } from "../model/purchase.model"
+import { courseModel } from "../model/course.model"
+import { purchaseRate, browseRate } from "../middlewares/rateLimiter"
 
 
 courseRouter.post('/buyCourse',purchaseRate, userAuth, async (req, res) => {

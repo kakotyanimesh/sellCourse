@@ -1,18 +1,16 @@
-const { Router } = require('express')
+import { Router, Request, Response } from 'express'
 const userRouter = Router()
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const z = require('zod')
+import bcrypt from 'bcrypt'
+import * as jwt from 'jsonwebtoken'
+import { string, z } from 'zod'
 const { default: errorMap } = require('zod/locales/en.js')
-const { userModel } = require('../model/user.model')
-const { userAuth } = require('../middlewares/userauth')
-const { adminAuth } = require('../middlewares/adminauth')
-const { courseModel } = require('../model/course.model')
-const { purchaseModel } = require('../model/purchase.model')
-const { generalRate, loginLimit, purchaseRate, browseRate} = require('../middlewares/rateLimiter')
+import { userModel } from '../model/user.model'
+import { userAuth } from '../middlewares/userauth'
+import { purchaseModel } from '../model/purchase.model'
+import { loginLimit } from '../middlewares/rateLimiter'
+import { strict } from 'assert'
 
-
-userRouter.post('/signup', loginLimit, async (req, res) => {
+userRouter.post('/signup', loginLimit, async (req : Request, res : Response) => {
     try {
         const signupObject = z.object({
             email: z.string().email({ message : 'provide valid email'}),
@@ -52,7 +50,7 @@ userRouter.post('/signup', loginLimit, async (req, res) => {
 })
 
 
-userRouter.post('/signin',loginLimit, async (req, res) => {
+userRouter.post('/signin',loginLimit, async (req : Request, res : Response) => {
     try {
         const signinObject = z.object({
             email : z.string().email({message : 'provide a valid email'}),
@@ -104,7 +102,7 @@ userRouter.post('/signin',loginLimit, async (req, res) => {
     }
 })
 
-userRouter.get('/userCourse', userAuth, async (req, res) => {
+userRouter.get('/userCourse', userAuth, async (req : Request, res: Response) => {
     try {
         const userId = req.userId
     

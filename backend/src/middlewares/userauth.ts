@@ -1,5 +1,4 @@
-const jwt = require('jsonwebtoken')
-
+import * as jwt from 'jsonwebtoken'
 const userAuth = (req, res, next) => {
     const token = req.headers.authorization
 
@@ -23,7 +22,4 @@ const userAuth = (req, res, next) => {
     
 }
 
-
-module.exports = {
-    userAuth
-}
+export { userAuth}

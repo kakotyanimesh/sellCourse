@@ -1,7 +1,6 @@
-const mongoose = require('mongoose')
-const { string } = require('zod')
-const { Schema, Types : { ObjectId } } = mongoose
 
+import mongoose, { Schema, Types} from "mongoose"
+const { ObjectId } = Types
 
 const adminSchema = new Schema({
     email : {
@@ -28,6 +27,5 @@ const adminSchema = new Schema({
 
 
 const adminModel = mongoose.model('Admin', adminSchema)     
-module.exports = {
-    adminModel
-}
+
+export { adminModel }
